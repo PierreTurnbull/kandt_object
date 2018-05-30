@@ -1,7 +1,6 @@
 <?php
-require_once "./../functions/functions.php";
-require_once "./../includes/includes.php";
-require_once "./../controllers/frontController.php";
+use \Controller\FrontController;
 
-frontController("page");
-?>
+require_once dirname(__DIR__ . "/init.php");
+
+echo KANDT_ROOT_DIR;
