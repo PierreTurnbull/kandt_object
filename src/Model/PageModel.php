@@ -11,7 +11,7 @@ class PageModel
         $this->connection = Connection::get();
     }
 
-    public function index()
+    public function index(): array
     {
         $queryStr = "
             SELECT
@@ -23,5 +23,28 @@ class PageModel
         $stmt = $this->connection->prepare($queryStr);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function show(int $index): array
+    {
+        $queryStr = "
+            SELECT
+                `id`,
+                `title`,
+                `h1`,
+                `p`,
+                `span-class`,
+                `span-text`,
+                `img-alt`,
+                `img-src`
+            FROM
+                `page`
+            WHERE
+                `id` = :id
+        ";
+        $stmt = $this->connection->prepare($queryStr);
+        $stmt->bindValue(":id", $index);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }

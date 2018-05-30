@@ -12,6 +12,12 @@ class FrontController
                 $controller->index();
                 break;
             case "page.show":
+                if (!isset($_GET[\KANDT_PAGE_PARAM])) {
+                    echo "Not enough params!";
+                    break;
+                }
+                $controller = new PageController();
+                $controller->show($_GET[\KANDT_PAGE_PARAM]);
                 break;
             case "page.edit":
                 break;

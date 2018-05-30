@@ -17,6 +17,14 @@ class PageController
     public function index()
     {
         $data = $this->model->index();
+        // TODO: check $data
         $this->view->index($data);
+    }
+
+    public function show(int $index)
+    {
+        $data = $this->model->show($index);
+        // TODO: check $data
+        $this->view->show($data[0]);
     }
 }
