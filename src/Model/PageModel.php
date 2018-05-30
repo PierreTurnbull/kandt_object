@@ -1,14 +1,27 @@
 <?php
 namespace Model;
 
+use \Helper\Connection;
+
 class PageModel
 {
-    /**
-     * returns all the pages
-     * @return array|null: list of pages
-     */
-    public function findAll(): ?array
+    private $connection = null;
+    public function __construct()
     {
-        return null;
+        $this->connection = Connection::get();
+    }
+
+    public function index()
+    {
+        $queryStr = "
+            SELECT
+                `title`,
+                `id`
+            FROM
+                `page`
+        ";
+        $stmt = $this->connection->prepare($queryStr);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
