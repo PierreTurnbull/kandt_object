@@ -1,6 +1,5 @@
 {
     "name": "nounoursnoir/kandt_object",
-    "license": "MIT",
     "authors": [
         {
             "name": "PierreTurnbull",
@@ -11,8 +10,12 @@
     "autoload": {
         "psr-4": {
             "Controller\\": "src/Controller",
-            "Model\\":      "src/Model",
-            "View\\":       "src/View"
-        }
+            "Model\\": "src/Model",
+            "View\\": "src/View",
+            "Helper\\": "src/Helper"
+        },
+        "files": [
+            "init.php"
+        ]
     }
 }
