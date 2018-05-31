@@ -73,8 +73,19 @@ class PageModel
 
     public function delete(int $index): array
     {
-        echo "model delete " . $index;
-        return 1;
+        $queryStr = "
+            SELECT
+                `id`,
+                `title`
+            FROM
+                `page`
+            WHERE
+                `id` = :id
+        ";
+        $stmt = $this->connection->prepare($queryStr);
+        $stmt->bindValue(":id", $index);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function doEdit(array $data)
@@ -102,6 +113,22 @@ class PageModel
         $stmt->bindValue(":imgAlt", $data["img-alt"]);
         $stmt->bindValue(":imgSrc", $data["img-src"]);
         $stmt->bindValue(":id", $data["id"]);
+        $stmt->execute();
+        header("Location: " . \KANDT_ROOT_URI . \KANDT_ACTION_PARAM . "=page.index");
+        exit;
+    }
+
+    public function doDelete(int $index)
+    {
+        echo "doing delete";
+        $queryStr = "
+            DELETE FROM
+                `page`
+            WHERE
+                `id` = :id
+        ";
+        $stmt = $this->connection->prepare($queryStr);
+        $stmt->bindValue(":id", $index);
         $stmt->execute();
         header("Location: " . \KANDT_ROOT_URI . \KANDT_ACTION_PARAM . "=page.index");
         exit;

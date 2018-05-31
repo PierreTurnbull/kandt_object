@@ -12,6 +12,7 @@ class PageView
         $path = \KANDT_ROOT_URI . \KANDT_ACTION_PARAM;
         ?>
         <table>
+            <h1>index</h1>
             <tr>
                 <th>ID</th>
                 <th>Title</th>
@@ -90,8 +91,14 @@ class PageView
         <?php
     }
 
-    public function delete(array $index)
+    public function delete(array $data)
     {
-        echo "view delete " . $index;
+        ?>
+        Are you sure you want to delete page "<?= $data["title"] ?>"?
+        <form action="<?= \KANDT_ROOT_URI . \KANDT_ACTION_PARAM . "=page.doDelete" ?>" method="post">
+            <input type="text" name="id" value="<?= $data["id"] ?>" style="display:none">
+            <input type="submit" value="Delete">
+        </form>
+        <?php
     }
 }
