@@ -17,14 +17,29 @@ class PageController
     public function index()
     {
         $data = $this->model->index();
-        // TODO: check $data
         $this->view->index($data);
     }
 
     public function show(int $index)
     {
         $data = $this->model->show($index);
-        // TODO: check $data
         $this->view->show($data[0]);
+    }
+
+    public function edit(int $index)
+    {
+        $data = $this->model->edit($index);
+        $this->view->edit($data[0]);
+    }
+
+    public function delete(int $index)
+    {
+        $data = $this->model->delete($index);
+        $this->view->delete($data[0]);
+    }
+
+    public function doEdit(array $data)
+    {
+        $this->model->doEdit($data);
     }
 }

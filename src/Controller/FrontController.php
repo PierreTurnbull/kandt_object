@@ -20,8 +20,28 @@ class FrontController
                 $controller->show($_GET[\KANDT_PAGE_PARAM]);
                 break;
             case "page.edit":
+                if (!isset($_GET[\KANDT_PAGE_PARAM])) {
+                    echo "Not enough params!";
+                    break;
+                }
+                $controller = new PageController();
+                $controller->edit($_GET[\KANDT_PAGE_PARAM]);
                 break;
             case "page.delete":
+                if (!isset($_GET[\KANDT_PAGE_PARAM])) {
+                    echo "Not enough params!";
+                    break;
+                }
+                $controller = new PageController();
+                //$controller->delete($_GET[\KANDT_PAGE_PARAM]);
+                break;
+            case "page.doEdit":
+                if (!isset($_POST["id"])) {
+                    echo "Not enough params!";
+                    break;
+                }
+                $controller = new PageController();
+                $controller->doEdit($_POST);
                 break;
             default:
                 echo "default";
