@@ -42,4 +42,9 @@ class PageController
     {
         $this->model->doEdit($data);
     }
+
+    public function doDelete(int $data)
+    {
+        $this->model->doDelete($data);
+    }
 }

@@ -33,7 +33,7 @@ class FrontController
                     break;
                 }
                 $controller = new PageController();
-                //$controller->delete($_GET[\KANDT_PAGE_PARAM]);
+                $controller->delete($_GET[\KANDT_PAGE_PARAM]);
                 break;
             case "page.doEdit":
                 if (!isset($_POST["id"])) {
@@ -42,6 +42,14 @@ class FrontController
                 }
                 $controller = new PageController();
                 $controller->doEdit($_POST);
+                break;
+            case "page.doDelete":
+                if (!isset($_POST["id"])) {
+                    echo "Not enough params!";
+                    break;
+                }
+                $controller = new PageController();
+                $controller->doDelete($_POST["id"]);
                 break;
             default:
                 echo "default";
