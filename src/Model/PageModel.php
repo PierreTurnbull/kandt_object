@@ -133,4 +133,31 @@ class PageModel
         header("Location: " . \KANDT_ROOT_URI . \KANDT_ACTION_PARAM . "=page.index");
         exit;
     }
+
+    public function doCreate(array $data)
+    {
+        $queryStr = "
+            INSERT INTO
+                `page`
+            SET 
+                `title` = :title,
+                `h1` = :h1,
+                `p` = :p,
+                `span-class` = :spanClass,
+                `span-text` = :spanText,
+                `img-alt` = :imgAlt,
+                `img-src` = :imgSrc
+        ";
+        $stmt = $this->connection->prepare($queryStr);
+        $stmt->bindValue(":title", $data["title"]);
+        $stmt->bindValue(":h1", $data["h1"]);
+        $stmt->bindValue(":p", $data["p"]);
+        $stmt->bindValue(":spanClass", $data["span-class"]);
+        $stmt->bindValue(":spanText", $data["span-text"]);
+        $stmt->bindValue(":imgAlt", $data["img-alt"]);
+        $stmt->bindValue(":imgSrc", $data["img-src"]);
+        $stmt->execute();
+        header("Location: " . \KANDT_ROOT_URI . \KANDT_ACTION_PARAM . "=page.index");
+        exit;
+    }
 }

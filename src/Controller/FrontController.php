@@ -51,6 +51,14 @@ class FrontController
                 $controller = new PageController();
                 $controller->doDelete($_POST["id"]);
                 break;
+            case "page.doCreate":
+                if (count($_POST) < 7) {
+                    echo "Not enough params!";
+                    break;
+                }
+                $controller = new PageController();
+                $controller->doCreate($_POST);
+                break;
             default:
                 echo "default";
                 break;

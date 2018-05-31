@@ -48,6 +48,24 @@ class PageView
                 }
             } ?>
         </table>
+        <form action="<?= \KANDT_ROOT_URI . \KANDT_ACTION_PARAM . "=page.doCreate" ?>" method="post">
+            <h2>Create a new page</h2>
+            <label for="h1">h1</label>
+            <input type="text" name="h1" value=""><br>
+            <label for="title">title</label>
+            <input type="text" name="title" value=""><br>
+            <label for="p">p</label>
+            <input type="text" name="p" value=""><br>
+            <label for="span-src">span-class</label>
+            <input type="text" name="span-class" value=""><br>
+            <label for="span-alt">span-text</label>
+            <input type="text" name="span-text" value=""><br>
+            <label for="img-src">img-src</label>
+            <input type="text" name="img-src" value=""><br>
+            <label for="img-alt">img-alt</label>
+            <input type="text" name="img-alt" value=""><br>
+            <input type="submit">
+        </form>
         <?php
     }
 
@@ -99,6 +117,7 @@ class PageView
             <input type="text" name="id" value="<?= $data["id"] ?>" style="display:none">
             <input type="submit" value="Delete">
         </form>
+        <a href="<?= \KANDT_ROOT_URI . \KANDT_ACTION_PARAM . "=page.index" ?>">Home</a>
         <?php
     }
 }
