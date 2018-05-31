@@ -47,4 +47,9 @@ class PageController
     {
         $this->model->doDelete($data);
     }
+
+    public function doCreate(array $data)
+    {
+        $this->model->doCreate($data);
+    }
 }
